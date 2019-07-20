@@ -1,8 +1,0 @@
-{
-  "name":"truck form",
-  "short_name":"truck",
-  "start_url":"https://truckproject-b9adc.firebaseapp.com/",
-  "display":"standalone",
-  "orientation":"portrait"
-
-}

@@ -1,0 +1,17 @@
+{
+  "name":"truck form",
+  "short_name":"truck",
+  "icons": [
+    {
+      "src":"",
+      "sizes": "",
+      "type": ""
+    }
+  ],
+  "start_url":"https://truckproject-b9adc.firebaseapp.com/",
+  "display":"standalone",
+  "orientation":"portrait",
+  "theme_color": "#536878",
+  "background_color": "#000"
+
+}
