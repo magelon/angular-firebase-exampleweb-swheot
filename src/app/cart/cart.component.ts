@@ -22,9 +22,7 @@ items;
    }
 
 ngOnInit(){
- 
    if (!this.afAuth.auth.currentUser) {
-      
       this.route.navigate(['']);
    }
 }
