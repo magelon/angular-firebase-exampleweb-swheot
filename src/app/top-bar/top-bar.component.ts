@@ -17,9 +17,7 @@ export class TopBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(!this.afAuth.user){
-        this.router.navigate(['']);
-    }
+   
   }
 
 }
