@@ -1,0 +1,29 @@
+<h2>Products</h2>
+<div *ngFor="let product of products; index as productId">
+	<h3>
+    <!-- property binding [ ] lets you use the property value in a template expression.mouse on the link will show the expression, not useful in phone expression-->
+		<a [title]="product.name+' details'" [routerLink]="['/products', productId]">
+			{{ product.name }}
+		</a>
+	</h3>
+	<p *ngIf="product.description">
+		Description: {{product.description}}</p>
+
+	<button (click)="share()">
+    share
+    </button>
+    <app-product-alerts
+      [product]="product"
+      (notify)="onNotify()">
+    </app-product-alerts>
+</div>
+<ul>
+    <li *ngFor="let item of items | async">
+       {{ item | json }}
+    </li>
+  </ul>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
