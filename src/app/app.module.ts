@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShippingComponent } from './shipping/shipping.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import {AngularFireAuthModule}from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
 
 
@@ -33,6 +34,7 @@ const firebaseConfig = {
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
       HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
