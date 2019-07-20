@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public afAuth:AngularFireAuth) { }
+
+ logout() {
+    this.afAuth.auth.signOut();
+  }
 
   ngOnInit() {
   }

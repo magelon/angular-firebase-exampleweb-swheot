@@ -18,7 +18,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import {AngularFireAuthModule}from '@angular/fire/auth';
 import { LoginComponent } from './login/login.component';
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAy4Vx5HGQ82x8hCiBuPhAtxQphCq8KJDU",
   authDomain: "truckproject-b9adc.firebaseapp.com",
@@ -35,7 +34,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-      HttpClientModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
