@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,CanActivate,Router  } from '@angular/router';
 
 import { products } from '../products';
 import { CartService } from '../cart.service';
+
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements CanActivate  {
  product;
  //The ActivatedRoute is specific to each routed component loaded by the Angular Router. It contains //information about the route, its parameters, and additional data associated with the route.
-  constructor(private route: ActivatedRoute,private cartService: CartService) {
+  constructor(private route: Router,private cartService: CartService,public afAuth:AngularFireAuth) {
    }
 
    addToCart(product) {
@@ -20,10 +23,12 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.addToCart(product);
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(params=>{
-      this.product=products[+params.get('productId')];
-    });
+  canActivate(): boolean {
+    if (!this.afAuth.auth) {
+      this.route.navigate(['']);
+      return false;
+    }
+    return true;
   }
 
 }
