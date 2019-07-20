@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShippingComponent } from './shipping/shipping.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { LoginComponent } from './login/login.component';
 
 
 const firebaseConfig = {
@@ -38,6 +39,7 @@ const firebaseConfig = {
       { path: '', component: ProductListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
        { path: 'cart', component: CartComponent },
+       {path:'login',component:LoginComponent},
         { path: 'shipping', component: ShippingComponent },
     ])
   ],
@@ -48,7 +50,8 @@ const firebaseConfig = {
     ProductAlertsComponent,
     ProductDetailsComponent,
     CartComponent,
-    ShippingComponent
+    ShippingComponent,
+    LoginComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [CartService]
