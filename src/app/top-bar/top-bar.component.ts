@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-top-bar',
@@ -9,13 +10,16 @@ import { auth } from 'firebase/app';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(public afAuth:AngularFireAuth) { }
+  constructor(public afAuth:AngularFireAuth,private router: Router) { }
 
  logout() {
     this.afAuth.auth.signOut();
   }
 
   ngOnInit() {
+    if(!this.afAuth.user){
+        this.router.navigate(['']);
+    }
   }
 
 }
