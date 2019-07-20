@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,14 +7,7 @@ import { auth } from 'firebase/app';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(public afAuth:AngularFireAuth) { }
-
-login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  }
-  logout() {
-    this.afAuth.auth.signOut();
-  }
+  constructor() { }
 
   ngOnInit() {
   }

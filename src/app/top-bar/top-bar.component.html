@@ -2,15 +2,11 @@
   <h1>Form services</h1>
 </a>
 
-<div *ngIf="afAuth.user | async as user; else showLogin">
+<div *ngIf="afAuth.user | async as user">
       <h1>Hello {{ user.displayName }}!</h1>
       <button (click)="logout()">Logout</button>
     </div>
-    <ng-template #showLogin>
-      <!-- <a [routerLink]="['/login']" class="button fancy-button"><i class="material-icons">account_circle</i>Sign In</a> -->
-     
-      <button (click)="login()">Login</button>
-    </ng-template>
+
 
 
 
