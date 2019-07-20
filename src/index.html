@@ -18,7 +18,7 @@
 <!-- Load Stripe.js on your website. -->
 <script src="https://js.stripe.com/v3"></script>
 
-<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. 
+<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
 <button
   style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
   id="checkout-button-plan_FT4QG4PseZx1QA"
@@ -27,10 +27,47 @@
   Checkout
 </button>
 <div id="error-message"></div>
--->
+
 
 <script>
   var stripe = Stripe('pk_test_KFuKDO7ayBQ3tw9nsQAYGls5');
+
+// 1. Create the button
+var btnAdd = document.createElement("button");
+btnAdd.innerHTML = "Do Something";
+
+// 2. Append somewhere
+var body = document.getElementsByTagName("body")[0];
+body.appendChild(btnAdd);
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+   // Update UI notify the user they can add to home screen
+  btnAdd.style.display = 'block';
+});
+
+btnAdd.addEventListener('click', (e) => {
+  // hide our user interface that shows our A2HS button
+  btnAdd.style.display = 'none';
+  // Show the prompt
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice
+    .then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });
+});
+
 
   var checkoutButton = document.getElementById('checkout-button-plan_FT4QG4PseZx1QA');
   checkoutButton.addEventListener('click', function () {
