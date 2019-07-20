@@ -24,7 +24,7 @@ export class ProductDetailsComponent implements CanActivate  {
   }
 
   canActivate(): boolean {
-    if (!this.afAuth.auth) {
+    if (!this.afAuth.auth.currentUser) {
       this.route.navigate(['']);
       return false;
     }

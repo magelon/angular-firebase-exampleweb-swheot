@@ -10,7 +10,7 @@ import { auth } from 'firebase/app';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements CanActivate {
+export class CartComponent implements OnInit {
 items;
  checkoutForm;
   constructor( private route: Router,private cartService: CartService,public afAuth:AngularFireAuth,private formBuilder: FormBuilder,) {
@@ -21,13 +21,14 @@ items;
     });
    }
 
-   canActivate(): boolean {
-    if (!this.afAuth.auth) {
+ngOnInit(){
+ 
+   if (!this.afAuth.auth.currentUser) {
+      
       this.route.navigate(['']);
-      return false;
-    }
-    return true;
-  }
+   }
+}
+
 
    onSubmit(customerData) {
     // Process checkout data here
