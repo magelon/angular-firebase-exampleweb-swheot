@@ -16,18 +16,30 @@ import { auth } from 'firebase/app';
 export class ProductListComponent {
   products = products;
 items: Observable<any[]>;
-  constructor(db: AngularFireDatabase,public afAuth:AngularFireAuth) {
+  constructor(public db: AngularFireDatabase,public afAuth:AngularFireAuth) {
    this.items = db.list('items').valueChanges();
     console.log();
   }
 
 login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+    .then(()=> 
+     this.updateUserData()).catch
+    (error=>console.log(error));
   }
   logout() {
     this.afAuth.auth.signOut();
-  }
+  
+  }  
 
+private updateUserData(): void{
+  let path=`users/${this.afAuth.auth.currentUser.uid}`;
+  let data={
+    email:this.afAuth.auth.currentUser.email,
+    name:this.afAuth.auth.currentUser.displayName,
+  }
+  this.db.object(path).update(data).catch(error=>console.log(error));
+}
 
   share() {
     window.alert('The product has been shared!');
